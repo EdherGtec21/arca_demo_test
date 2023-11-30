@@ -269,6 +269,12 @@ view: zsd_d048_202208 {
     type: string
     sql: ${TABLE}._BIC_ZSD_KF131 ;;
   }
+
+  measure: total_cajas_unidad {
+    label: "Total Cajas Unidad"
+    type: sum
+    sql: ${TABLE}._BIC_ZSD_KF131 ;;
+  }
   dimension: _bic_zsd_kf133 {
     type: string
     sql: ${TABLE}._BIC_ZSD_KF133 ;;
