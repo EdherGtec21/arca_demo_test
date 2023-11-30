@@ -78,6 +78,7 @@ view: zbt_d031_202208 {
     sql: ${TABLE}._BIC_ZDELIVNUM ;;
   }
   dimension: _bic_zdeltype {
+    label: "Clase de entrega"
     type: string
     sql: ${TABLE}._BIC_ZDELTYPE ;;
   }
@@ -90,6 +91,7 @@ view: zbt_d031_202208 {
     sql: ${TABLE}._BIC_ZDIVISION ;;
   }
   dimension: _bic_zdoc_num {
+    label: "No. de pedido"
     type: string
     sql: ${TABLE}._BIC_ZDOC_NUM ;;
   }
@@ -218,6 +220,7 @@ view: zbt_d031_202208 {
     sql: ${TABLE}._BIC_ZSD_KF125 ;;
   }
   dimension: _bic_zsd_kf126 {
+    label: "Cantidad en UMA"
     type: string
     sql: ${TABLE}._BIC_ZSD_KF126 ;;
   }
@@ -306,6 +309,7 @@ view: zbt_d031_202208 {
     sql: ${TABLE}.BASE_UOM ;;
   }
   dimension: calday {
+    label: "Día Natural"
     type: string
     sql: ${TABLE}.CALDAY ;;
   }
@@ -322,6 +326,7 @@ view: zbt_d031_202208 {
     sql: ${TABLE}.DOC_CURRCY ;;
   }
   dimension: net_price {
+    label: "Precio Neto"
     type: string
     sql: ${TABLE}.NET_PRICE ;;
   }
