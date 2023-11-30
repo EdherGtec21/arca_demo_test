@@ -328,7 +328,7 @@ view: zbt_d031_202208 {
   dimension: net_price {
     label: "Precio Neto"
     type: string
-    sql: ${TABLE}.NET_PRICE > 0;;
+    sql: ${TABLE}.NET_PRICE ;;
 
   }
   dimension: net_value {
