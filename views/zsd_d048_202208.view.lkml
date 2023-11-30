@@ -47,10 +47,12 @@ view: zsd_d048_202208 {
     sql: ${TABLE}._BIC_ZITEMCATG ;;
   }
   dimension: _bic_zmaterial {
+    label: "Código de Material"
     type: string
     sql: ${TABLE}._BIC_ZMATERIAL ;;
   }
   dimension: _bic_zplant {
+    label: "CEDI"
     type: string
     sql: ${TABLE}._BIC_ZPLANT ;;
   }
@@ -263,6 +265,7 @@ view: zsd_d048_202208 {
     sql: ${TABLE}._BIC_ZSD_KF130 ;;
   }
   dimension: _bic_zsd_kf131 {
+    label: "Cajas Unidad"
     type: string
     sql: ${TABLE}._BIC_ZSD_KF131 ;;
   }
@@ -347,6 +350,7 @@ view: zsd_d048_202208 {
     sql: ${TABLE}.BASE_UOM ;;
   }
   dimension: calday {
+    label: "Día Natural"
     type: string
     sql: ${TABLE}.CALDAY ;;
   }
