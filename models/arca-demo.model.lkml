@@ -10,4 +10,10 @@ datagroup: demo_default_datagroup {
 
 persist_with: demo_default_datagroup
 
-explore: zbt_d031_202208 {}
+explore: zbt_d031_202208 {
+  label: "ZBT D031"
+}
+
+explore: zsd_d048_202208 {
+  label: "ZSD D048"
+}
