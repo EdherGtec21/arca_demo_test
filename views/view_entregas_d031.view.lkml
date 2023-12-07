@@ -26,7 +26,7 @@ view: view_entregas_d031 {
 
   measure: no_delivery_rate {
     type: number
-    sql: countif(${TABLE}._BIC_ZBT_CH063 IS NOT NULL) / ${count}() ;;
+    sql: countif(${TABLE}._BIC_ZBT_CH063 IS NOT NULL) / ${count} ;;
     description: "Razón de No Entrega (No Delivery Rate)"
   }
 
