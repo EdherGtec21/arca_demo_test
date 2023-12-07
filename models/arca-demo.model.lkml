@@ -17,3 +17,8 @@ explore: zbt_d031_202208 {
 explore: zsd_d048_202208 {
   label: "ZSD D048"
 }
+
+
+explore: view_entregas_d031 {
+  label: "Entregas"
+}
