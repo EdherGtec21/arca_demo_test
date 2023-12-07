@@ -18,6 +18,12 @@ view: view_entregas_d031 {
     type: count
   }
 
+  measure: fill_rate {
+    type: number
+    sql: {sum(${TABLE}._BIC_ZSD_KF124)} / NULLIF({sum(${TABLE}._BIC_ZSD_KF125)}, 0) ;;
+    description: "Fill Rate"
+  }
+
   dimension: _bic_zbill_num {
     type: string
     sql: ${TABLE}._BIC_ZBILL_NUM ;;
