@@ -12,6 +12,12 @@ view: view_entregas_d031 {
     type: string
     sql: ${TABLE}._BIC_ZBATCH ;;
   }
+
+  measure: _bic_zsd_kf124 {
+    label: "Total Entregas"
+    type: count
+  }
+
   dimension: _bic_zbill_num {
     type: string
     sql: ${TABLE}._BIC_ZBILL_NUM ;;
@@ -218,10 +224,10 @@ view: view_entregas_d031 {
     type: number
     sql: ${TABLE}._BIC_ZSD_KF020 ;;
   }
-  dimension: _bic_zsd_kf124 {
-    type: number
-    sql: ${TABLE}._BIC_ZSD_KF124 ;;
-  }
+ # dimension: _bic_zsd_kf124 {
+ #   type: number
+ #  sql: ${TABLE}._BIC_ZSD_KF124 ;;
+ # }
   dimension: _bic_zsd_kf125 {
     type: number
     sql: ${TABLE}._BIC_ZSD_KF125 ;;
