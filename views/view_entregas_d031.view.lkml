@@ -20,7 +20,7 @@ view: view_entregas_d031 {
 
   measure: fill_rate {
     type: number
-    sql: {sum(${TABLE}._BIC_ZSD_KF124)} / NULLIF({sum(${TABLE}._BIC_ZSD_KF125)}, 0) ;;
+    sql: sum(${TABLE}._BIC_ZSD_KF124) / NULLIF(sum(${TABLE}._BIC_ZSD_KF125), 0) ;;
     description: "Fill Rate"
   }
 
