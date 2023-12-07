@@ -24,6 +24,12 @@ view: view_entregas_d031 {
     description: "Fill Rate"
   }
 
+  measure: no_delivery_rate {
+    type: number
+    sql: COUNT_IF(${TABLE}._BIC_ZBT_CH063 IS NOT NULL) / COUNT() ;;
+    description: "Razón de No Entrega (No Delivery Rate)"
+  }
+
   dimension: _bic_zbill_num {
     type: string
     sql: ${TABLE}._BIC_ZBILL_NUM ;;
