@@ -14,10 +14,16 @@ view: fro_x_material {
     type: string
     sql: ${TABLE}.DOC_TYPE_PEDIDO ;;
   }
+  #dimension: entregas_devueltas {
+  #  type: string
+ #   sql: ${TABLE}.Entregas_Devueltas ;;
+#  }
+
   dimension: entregas_devueltas {
     type: string
-    sql: ${TABLE}.Entregas_Devueltas ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.Entregas_Devueltas ELSE NULL END ;;
   }
+
   dimension: entregas_incompletas {
     type: string
     sql: ${TABLE}.Entregas_Incompletas ;;
@@ -77,4 +83,7 @@ view: fro_x_material {
   measure: count {
     type: count
   }
+
+
+
 }
