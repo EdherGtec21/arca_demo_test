@@ -11,7 +11,7 @@ view: fro {
   }
   dimension: entregas_perfectas {
     type: number
-    sql: ${TABLE}.Entregas_Perfectas ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.Entregas_Perfectas ELSE NULL END;;
   }
   measure: entregas_perfectas_sum {
     type: sum
@@ -183,7 +183,7 @@ view: fro {
   }
   dimension: cajas_originales_pedidas {
     type: number
-    sql: ${TABLE}.ZSD_KF006 ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.ZSD_KF006 ELSE NULL END;;
   }
   measure: cajas_originales_pedidas_sum {
     type: sum
@@ -192,7 +192,7 @@ view: fro {
   dimension: zsd_kf124 {
     type: number
     label: "Cantidad Entregada efectivamente en UMV"
-    sql: ${TABLE}.ZSD_KF124 ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.ZSD_KF124 ELSE NULL END;;
   }
   dimension: zsd_kf125 {
     type: string
@@ -360,14 +360,11 @@ view: fro {
 
   measure: cajas_entregadas {
     type: sum
-    sql: IFNULL(
-          CASE
-            WHEN ${cajas_cargadas} IS NOT NULL AND ${zsd_kf124} >= ${cajas_cargadas}
+    sql:CASE
+            WHEN ${zsd_kf124} >= ${cajas_cargadas}
             THEN ${cajas_cargadas}
             ELSE ${zsd_kf124}
-          END,
-          0
-        ) ;;
+          END;;
   }
 
 }
