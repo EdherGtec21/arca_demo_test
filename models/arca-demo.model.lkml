@@ -28,5 +28,5 @@ explore: fro {
 }
 
 explore: fro_x_material {
-  label: "Fill Rate Operativo "
+  label: "Fill Rate Operativo por Material "
 }
