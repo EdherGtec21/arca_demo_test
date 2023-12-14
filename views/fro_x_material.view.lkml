@@ -24,6 +24,91 @@ view: fro_x_material {
   measure: entregas_devueltas_sum {
     type: sum
     sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.Entregas_Devueltas ELSE NULL END ;;
+    drill_fields: [doc_type_pedido,zshipdate__]
+    link: {
+      label: "Detalle"
+      url: "{% assign vis_config='{\"show_view_names\":false,
+        \"show_row_numbers\":true,
+        \"transpose\":false,
+        \"truncate_text\":true,
+        \"hide_totals\":false,
+        \"hide_row_totals\":false,
+        \"size_to_fit\":true,
+        \"table_theme\":\"white\",
+        \"limit_displayed_rows\":false,
+        \"enable_conditional_formatting\":false,
+        \"header_text_alignment\":\"left\",
+        \"header_font_size\":12,
+        \"rows_font_size\":12,
+        \"conditional_formatting_include_totals\":false,
+        \"conditional_formatting_include_nulls\":false,
+        \"type\":\"looker_grid\",\"x_axis_gridlines\":false,
+        \"y_axis_gridlines\":true,\"show_y_axis_labels\":true,
+        \"show_y_axis_ticks\":true,\"y_axis_tick_density\":\"default\",
+        \"y_axis_tick_density_custom\":5,\"show_x_axis_label\":true,
+        \"show_x_axis_ticks\":true,
+        \"y_axis_scale_mode\":\"linear\",
+        \"x_axis_reversed\":false,
+        \"y_axis_reversed\":false,
+        \"plot_size_by_field\":false,
+        \"trellis\":\"\",\"stacking\":\"\",
+        \"legend_position\":\"center\",
+        \"point_style\":\"none\",
+        \"show_value_labels\":false,
+        \"label_density\":25,
+        \"x_axis_scale\":\"auto\",
+        \"y_axis_combined\":true,
+        \"show_null_points\":true,
+        \"interpolation\":\"linear\",
+        \"defaults_version\":1,
+        \"series_types\":{}}'%}
+    {{ link }}&vis_config={{ vis_config | encode_uri }}&fields=fro_x_material.zsd_kf006,fro_x_material.zshipdate___date,fro_x_material.zplant,fro_x_material.zsd_kf124,fro_x_material.zsd_kf127,fro_x_material.desabasto,fro_x_material.doc_type_pedido,fro_x_material.entregas_incompletas,fro_x_material.entregas_modificadas,fro_x_material.tzplant___________________,fro_x_material.zplant__tzsd_ch019,fro_x_material.pedidos_no_entregados_apt,fro_x_material.pedidos_no_entregados,fro_x_material.pedidos_modificados,fro_x_material.pedidos_entregados_incompletos,fro_x_material.entregas_devueltas_str&sorts=fro_x_material.zshipdate___date desc&limit=500&column_limit=50"
+    }
+  }
+
+  measure: entregas_no_devueltas_sum {
+    type: sum
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' AND ${TABLE}.Entregas_Devueltas = 0 THEN 1 ELSE NULL END ;;
+    drill_fields: [doc_type_pedido,zshipdate__]
+    link: {
+      label: "Detalle"
+      url: "{% assign vis_config='{\"show_view_names\":false,
+      \"show_row_numbers\":true,
+      \"transpose\":false,
+      \"truncate_text\":true,
+      \"hide_totals\":false,
+      \"hide_row_totals\":false,
+      \"size_to_fit\":true,
+      \"table_theme\":\"white\",
+      \"limit_displayed_rows\":false,
+      \"enable_conditional_formatting\":false,
+      \"header_text_alignment\":\"left\",
+      \"header_font_size\":12,
+      \"rows_font_size\":12,
+      \"conditional_formatting_include_totals\":false,
+      \"conditional_formatting_include_nulls\":false,
+      \"type\":\"looker_grid\",\"x_axis_gridlines\":false,
+      \"y_axis_gridlines\":true,\"show_y_axis_labels\":true,
+      \"show_y_axis_ticks\":true,\"y_axis_tick_density\":\"default\",
+      \"y_axis_tick_density_custom\":5,\"show_x_axis_label\":true,
+      \"show_x_axis_ticks\":true,
+      \"y_axis_scale_mode\":\"linear\",
+      \"x_axis_reversed\":false,
+      \"y_axis_reversed\":false,
+      \"plot_size_by_field\":false,
+      \"trellis\":\"\",\"stacking\":\"\",
+      \"legend_position\":\"center\",
+      \"point_style\":\"none\",
+      \"show_value_labels\":false,
+      \"label_density\":25,
+      \"x_axis_scale\":\"auto\",
+      \"y_axis_combined\":true,
+      \"show_null_points\":true,
+      \"interpolation\":\"linear\",
+      \"defaults_version\":1,
+      \"series_types\":{}}'%}
+      {{ link }}&vis_config={{ vis_config | encode_uri }}&fields=fro_x_material.zsd_kf006,fro_x_material.zshipdate___date,fro_x_material.zplant,fro_x_material.zsd_kf124,fro_x_material.zsd_kf127,fro_x_material.desabasto,fro_x_material.doc_type_pedido,fro_x_material.entregas_incompletas,fro_x_material.entregas_modificadas,fro_x_material.tzplant___________________,fro_x_material.zplant__tzsd_ch019,fro_x_material.pedidos_no_entregados_apt,fro_x_material.pedidos_no_entregados,fro_x_material.pedidos_modificados,fro_x_material.pedidos_entregados_incompletos,fro_x_material.entregas_devueltas_str&sorts=fro_x_material.zshipdate___date desc&limit=500&column_limit=50"
+    }
   }
   dimension: entregas_devueltas_str {
     type: string
@@ -61,6 +146,14 @@ view: fro_x_material {
     type: sum
     sql: ${pedidos_no_entregados_apt};;
   }
+  dimension: pedidos_sin_entrega {
+    type: number
+    sql: ${pedidos_no_entregados}-${pedidos_no_entregados_apt} ;;
+  }
+  dimension: pedidos_modificados_por_APT {
+    type: number
+    sql: ${pedidos_modificados}-${pedidos_sin_entrega} ;;
+  }
   dimension: tzplant___________________ {
     type: string
     sql: ${TABLE}.TZPLANT___________________ ;;
@@ -94,14 +187,10 @@ view: fro_x_material {
     label: "Cantidad de Entrega"
     sql: ${TABLE}.ZSD_KF127 ;;
   }
-  dimension_group: zshipdate__ {
-    type: time
+  dimension: zshipdate__ {
     label: "Fecha de Entrega"
-    timeframes: [raw, date, week, month, quarter, year]
-    convert_tz: no
     datatype: date
-    sql: ${TABLE}.ZSHIPDATE__ ;;
-    html:{{ rendered_value | date: "%e %b %Y" }};;
+    sql: ${TABLE}.ZSHIPDATE_ ;;
   }
   dimension: zsorditem {
     type: number

@@ -3,6 +3,8 @@ connection: "sample_bigquery_connection"
 
 include: "/**/*.view"
 
+include: "/**/*.dashboard"
+
 datagroup: demo_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
   max_cache_age: "168 hours"
