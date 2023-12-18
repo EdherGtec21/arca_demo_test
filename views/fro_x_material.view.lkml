@@ -154,11 +154,11 @@ view: fro_x_material {
     type: number
     sql: ${pedidos_modificados}-${pedidos_sin_entrega} ;;
   }
-  dimension: tzplant___________________ {
+  dimension: tzplant {
     type: string
     sql: ${TABLE}.TZPLANT___________________ ;;
   }
-  dimension: zdoc_num__ {
+  dimension: numero_de_documento {
     type: number
     sql: ${TABLE}.ZDOC_NUM__ ;;
   }

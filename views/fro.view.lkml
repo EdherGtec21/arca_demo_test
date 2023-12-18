@@ -7,6 +7,7 @@ view: fro {
   }
   dimension: doc_type_pedido {
     type: string
+    label: "Clase de Documento Pedido"
     sql: ${TABLE}.DOC_TYPE_PEDIDO ;;
   }
   dimension: entregas_perfectas {
@@ -33,11 +34,11 @@ view: fro {
     type: string
     sql: ${TABLE}.REASON_REJ ;;
   }
-  dimension: tzmaterial______________________________ {
+  dimension: tzmaterial {
     type: string
     sql: ${TABLE}.TZMATERIAL______________________________ ;;
   }
-  dimension: tzplant___________________ {
+  dimension: tzplant {
     type: string
     sql: ${TABLE}.TZPLANT___________________ ;;
   }
@@ -45,23 +46,23 @@ view: fro {
     type: string
     sql: ${TABLE}.TZSD_CH011 ;;
   }
-  dimension: tzsold_to__________________________ {
+  dimension: tzsold_to {
     type: string
     sql: ${TABLE}.TZSOLD_TO__________________________ ;;
   }
-  dimension: tztrzone__ {
+  dimension: tztrzone {
     type: string
     sql: ${TABLE}.TZTRZONE__ ;;
   }
-  dimension: zdelivnum_ {
+  dimension: numero_de_entrega {
     type: string
     sql: ${TABLE}.ZDELIVNUM_ ;;
   }
-  dimension: zdeltype {
+  dimension: clase_de_entrega {
     type: string
     sql: ${TABLE}.ZDELTYPE ;;
   }
-  dimension: zdoc_num__ {
+  dimension: numero_de_pedido {
     type: number
     sql: ${TABLE}.ZDOC_NUM__ ;;
   }
@@ -69,79 +70,81 @@ view: fro {
     type: number
     sql: ${TABLE}.ZMAT_TYPE ;;
   }
-  dimension: zmaterial_________ {
+  dimension: zmaterial {
     type: number
     sql: ${TABLE}.ZMATERIAL_________ ;;
   }
-  dimension: zmaterial__tzsd_ch003 {
+  dimension: tzsd_ch003 {
     type: string
     sql: ${TABLE}.ZMATERIAL__TZSD_CH003 ;;
   }
-  dimension: zmaterial__tzsd_ch309___________________ {
+  dimension: material_cokeOne {
     type: string
     sql: ${TABLE}.ZMATERIAL__TZSD_CH309___________________ ;;
   }
-  dimension: zmaterial__zsd_ch003 {
+  dimension: codigo_seg_tipo_de_producto {
     type: string
     sql: ${TABLE}.ZMATERIAL__ZSD_CH003 ;;
   }
-  dimension: zmaterial__zsd_ch107___ {
+  dimension: categoria_producto {
     type: string
     sql: ${TABLE}.ZMATERIAL__ZSD_CH107___ ;;
   }
-  dimension: zmaterial__zsd_ch125_______ {
+  dimension: marca {
     type: string
     sql: ${TABLE}.ZMATERIAL__ZSD_CH125_______ ;;
   }
-  dimension: zmaterial__zsd_ch132 {
+  dimension: segmento_agrupado {
     type: string
     sql: ${TABLE}.ZMATERIAL__ZSD_CH132 ;;
   }
-  dimension: zmaterial__zsd_ch134 {
+  dimension: tamanio {
     type: string
+    label: "Tamaño"
     sql: ${TABLE}.ZMATERIAL__ZSD_CH134 ;;
   }
-  dimension: zmaterial__zsd_ch309 {
+  dimension: codigo_material_cokeOne {
     type: number
     sql: ${TABLE}.ZMATERIAL__ZSD_CH309 ;;
   }
-  dimension: zplant {
+  dimension: cedi_hist {
     type: number
+    label: "CEDI Hist"
     sql: ${TABLE}.ZPLANT ;;
   }
-  dimension: zplant__tzsd_ch010 {
+  dimension: desc_division_hist {
     type: string
     sql: ${TABLE}.ZPLANT__TZSD_CH010 ;;
   }
-  dimension: zplant__tzsd_ch018 {
+  dimension: desc_territorio_hist {
     type: string
     sql: ${TABLE}.ZPLANT__TZSD_CH018 ;;
   }
-  dimension: zplant__tzsd_ch019 {
+  dimension: desc_zona_hist {
     type: string
     sql: ${TABLE}.ZPLANT__TZSD_CH019 ;;
   }
-  dimension: zplant__tzsd_ch072 {
+  dimension: desc_sub_territorio_hist {
     type: string
     sql: ${TABLE}.ZPLANT__TZSD_CH072 ;;
   }
-  dimension: zplant__zsd_ch010 {
+  dimension: division_hist {
     type: string
     sql: ${TABLE}.ZPLANT__ZSD_CH010 ;;
   }
-  dimension: zplant__zsd_ch018 {
+  dimension: territorio_hist {
     type: string
     sql: ${TABLE}.ZPLANT__ZSD_CH018 ;;
   }
-  dimension: zplant__zsd_ch019 {
+  dimension: zona_hist {
     type: string
     sql: ${TABLE}.ZPLANT__ZSD_CH019 ;;
   }
-  dimension: zplant__zsd_ch072 {
+  dimension: sub_territorio_hist {
     type: string
     sql: ${TABLE}.ZPLANT__ZSD_CH072 ;;
   }
-  dimension: zsd_ch011 {
+  dimension: ruta_sistema_de_ventas {
     type: number
     sql: ${TABLE}.ZSD_CH011 ;;
   }
@@ -153,31 +156,32 @@ view: fro {
     type: number
     sql: ${TABLE}.ZSD_CH011__ZSD_CH006 ;;
   }
-  dimension: zsd_ch093__ {
+  dimension: fecha_de_entrega {
     type: string
     sql: ${TABLE}.ZSD_CH093__ ;;
   }
-  dimension: zsd_ch094__ {
+  dimension: fecha_de_pedido {
     type: string
     sql: ${TABLE}.ZSD_CH094__ ;;
   }
-  dimension: zsd_ch098 {
+  dimension: indicador_caja_mixta {
     type: number
     sql: ${TABLE}.ZSD_CH098 ;;
   }
-  dimension: zsd_ch372_ {
+  dimension: numero_de_transporte {
     type: string
     sql: ${TABLE}.ZSD_CH372_ ;;
   }
-  dimension: zsd_ch528 {
+  dimension: anio_mes_de_fecha_de_entrega {
     type: number
     sql: ${TABLE}.ZSD_CH528 ;;
   }
-  dimension: zsd_ch529 {
+  dimension: anio_de_fecha_de_entrega {
     type: number
+    label: "Año de Fecha de Entrega"
     sql: ${TABLE}.ZSD_CH529 ;;
   }
-  dimension: zsd_ch530 {
+  dimension: semana_de_la_fecha_de_entrega {
     type: number
     sql: ${TABLE}.ZSD_CH530 ;;
   }
@@ -194,11 +198,11 @@ view: fro {
     label: "Cantidad Entregada efectivamente en UMV"
     sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.ZSD_KF124 ELSE NULL END;;
   }
-  dimension: zsd_kf125 {
+  dimension: cantidad_de_posiciones_de_entrega {
     type: string
     sql: ${TABLE}.ZSD_KF125 ;;
   }
-  dimension: zsd_kf126 {
+  dimension: cantidad_en_UMA {
     type: string
     sql: ${TABLE}.ZSD_KF126 ;;
   }
@@ -206,79 +210,80 @@ view: fro {
     type: number
     sql:CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.ZSD_KF127 ELSE NULL END;;
   }
-  dimension: zshipdate__ {
+  dimension: zshipdate {
     type: string
     sql: ${TABLE}.ZSHIPDATE__ ;;
   }
-  dimension: zsold_to__ {
+  dimension: codigo_cliente {
     type: number
     sql: ${TABLE}.ZSOLD_TO__ ;;
   }
-  dimension: zsold_to__tzsd_ch006_______ {
+  dimension: desc_modelo_de_servicio_cliente {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH006_______ ;;
   }
-  dimension: zsold_to__tzsd_ch014 {
+  dimension: desc_activo_cliente {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH014 ;;
   }
-  dimension: zsold_to__tzsd_ch062_________ {
+  dimension: desc_cadena_cuenta_clave {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH062_________ ;;
   }
-  dimension: zsold_to__tzsd_ch064 {
+  dimension: desc_tamanio_del_cliente {
     type: string
+    label: "Desc Tamaño del Cliente"
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH064 ;;
   }
-  dimension: zsold_to__tzsd_ch065____________________ {
+  dimension: desc_subcanal_ISSCOM {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH065____________________ ;;
   }
-  dimension: zsold_to__tzsd_ch157__________ {
+  dimension: cuenta_clave_ISSCOM {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH157__________ ;;
   }
-  dimension: zsold_to__tzsd_ch164___ {
+  dimension: desc_canal_RGM {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH164___ ;;
   }
-  dimension: zsold_to__tzsd_ch189_________ {
+  dimension: desc_cuenta_clave_ISSCOM {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH189_________ ;;
   }
-  dimension: zsold_to__tzsd_ch190_____________ {
+  dimension: canal_ISSCOM {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH190_____________ ;;
   }
-  dimension: zsold_to__tzsd_ch198 {
+  dimension: desc_canal_RTM {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH198 ;;
   }
-  dimension: zsold_to__tzsd_ch590 {
+  dimension: canal_ACT {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH590 ;;
   }
-  dimension: zsold_to__tzsd_ch591_______________________________ {
+  dimension: sub_canal_ACT {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH591_______________________________ ;;
   }
-  dimension: zsold_to__tzsd_ch675____________ {
+  dimension: cuenta_clave {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH675____________ ;;
   }
-  dimension: zsold_to__tzsd_ch765 {
+  dimension: roles_sistema {
     type: string
     sql: ${TABLE}.ZSOLD_TO__TZSD_CH765 ;;
   }
-  dimension: zsold_to__zsd_ch006 {
+  dimension: modelo_servicio_cliente {
     type: number
     sql: ${TABLE}.ZSOLD_TO__ZSD_CH006 ;;
   }
-  dimension: zsold_to__zsd_ch014 {
+  dimension: activo_cliente {
     type: string
     sql: ${TABLE}.ZSOLD_TO__ZSD_CH014 ;;
   }
-  dimension: zsold_to__zsd_ch062 {
+  dimension: cadena_cuenta_clave {
     type: string
     sql: ${TABLE}.ZSOLD_TO__ZSD_CH062 ;;
   }
