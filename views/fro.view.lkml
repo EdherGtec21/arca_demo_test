@@ -111,6 +111,7 @@ view: fro {
     type: number
     label: "CEDI Hist"
     sql: ${TABLE}.ZPLANT ;;
+    drill_fields: [indicador_caja_mixta,fecha_de_pedido,cajas_entregadas,cajas_originales_pedidas]
   }
   dimension: desc_division_hist {
     type: string
