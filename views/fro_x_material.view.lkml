@@ -192,6 +192,10 @@ view: fro_x_material {
     datatype: date
     sql: ${TABLE}.ZSHIPDATE_ ;;
   }
+  dimension_group:fecha_agrupada  {
+    datatype: date
+    sql: "Marzo";;
+    }
   dimension: zsorditem {
     type: number
     sql: ${TABLE}.ZSORDITEM ;;
