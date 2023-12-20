@@ -54,7 +54,7 @@ view: tbl_m0005 {
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
     datatype: date
-    sql: ${TABLE}.fecha_de_entrega ;;
+    sql: ${TABLE}.fecha_de_entrega_new ;;
   }
   dimension_group: fecha_de_pedido {
     type: time
