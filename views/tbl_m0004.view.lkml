@@ -46,7 +46,7 @@ view: tbl_m0004 {
     type: number
     sql: ${TABLE}.entregas_devueltas ;;
   }
-  measure: cajas_originales_pedidas_sum {
+  measure: entregas_devueltas_sum {
     type: sum
     sql: ${entregas_devueltas};;
   }
