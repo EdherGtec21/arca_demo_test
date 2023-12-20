@@ -32,3 +32,12 @@ explore: fro {
 explore: fro_x_material {
   label: "Fill Rate Operativo por Material "
 }
+
+
+explore: tbl_m0004 {
+  label: "M0004"
+}
+
+explore: tbl_m0005 {
+  label: "M0005"
+}
