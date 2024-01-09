@@ -8,6 +8,7 @@ connection: "sample_bigquery_connection"
 include: "/**/*.view"
 
 
+
 include: "/**/*.dashboard"
 
 # Incluyendo todos los LookML dashboards
