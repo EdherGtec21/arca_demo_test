@@ -1,6 +1,7 @@
 connection: "sample_bigquery_connection"
 
 
+
 include: "/**/*.view"
 
 include: "/**/*.dashboard"
