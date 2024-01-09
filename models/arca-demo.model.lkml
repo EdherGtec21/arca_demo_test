@@ -1,9 +1,15 @@
 connection: "sample_bigquery_connection"
 
 
+
 include: "/**/*.view"
 
+
 include: "/**/*.dashboard"
+
+# Incluyendo todos los LookML dashboards
+include: "/Dashboards/**/*.dashboard.lookml"
+
 
 datagroup: demo_default_datagroup {
   # sql_trigger: SELECT MAX(id) FROM etl_log;;
