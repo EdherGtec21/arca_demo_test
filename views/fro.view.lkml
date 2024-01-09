@@ -12,7 +12,7 @@ view: fro {
   }
   dimension: entregas_perfectas {
     type: number
-    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.Entregas_Perfectas ELSE NULL END;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN ${TABLE}.Entregas_Perfectas WHEN ${doc_type_pedido} <> '?' THEN ${TABLE}.Entregas_Perfectas ELSE NULL END;;
   }
   measure: entregas_perfectas_sum {
     type: sum
