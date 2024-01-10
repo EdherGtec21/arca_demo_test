@@ -2,6 +2,7 @@ view: tbl_m0005 {
   sql_table_name: `arca-cortex.looker_temporal.TblM0005` ;;
 
   dimension: _zsd_kf006 {
+    label: "Cajas Originales Pedidas"
     type: number
     sql: ${TABLE}._ZSD_KF006 ;;
   }
@@ -108,6 +109,7 @@ view: tbl_m0005 {
     sql: ${TABLE}.TZMATERIAL ;;
   }
   dimension: tzsd_ch011 {
+    label: "Desc Ruta Sistema de Ventas"
     type: string
     sql: ${TABLE}.TZSD_CH011 ;;
   }
@@ -128,22 +130,27 @@ view: tbl_m0005 {
     sql: ${TABLE}.ZMAT_TYPE ;;
   }
   dimension: zplant_tzsd_ch018 {
+    label: "Territorio Hist"
     type: string
     sql: ${TABLE}.ZPLANT_TZSD_CH018 ;;
   }
   dimension: zsd_kf124 {
+    label: "Cantidad Entregada Efectivamente en UMV"
     type: number
     sql: ${TABLE}.ZSD_KF124 ;;
   }
   dimension: zsd_kf125 {
+    label: "Cantidad de Posiciones de Entrega"
     type: number
     sql: ${TABLE}.ZSD_KF125 ;;
   }
   dimension: zsd_kf126 {
+    label: "Cantidad en UMA"
     type: number
     sql: ${TABLE}.ZSD_KF126 ;;
   }
   dimension: zsd_kf127 {
+    label: "Cantidad de Entrega"
     type: number
     sql: ${TABLE}.ZSD_KF127 ;;
   }

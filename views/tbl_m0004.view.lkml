@@ -6,6 +6,7 @@ view: tbl_m0004 {
     sql: ${TABLE}.___DOR_PED ;;
   }
   dimension: _zsd_kf135 {
+    label: "Cantidad de Entrega Original en Cajas Unidad"
     type: number
     sql: ${TABLE}._ZSD_KF135 ;;
   }
@@ -70,7 +71,7 @@ view: tbl_m0004 {
     type: string
     sql: ${TABLE}.PedPerf ;;
   }
-  dimension: ped_sinseg {
+  dimension: PedSINSeg {
     type: string
     sql: ${TABLE}.PedSINSeg ;;
   }
@@ -111,6 +112,7 @@ view: tbl_m0004 {
     sql: ${TABLE}.TZMATERIAL ;;
   }
   dimension: tzplant {
+    label: "CEDI"
     type: string
     sql: ${TABLE}.TZPLANT ;;
   }
@@ -139,6 +141,7 @@ view: tbl_m0004 {
     sql: ${TABLE}.ZPLANT ;;
   }
   dimension: zplant_zsd_ch019 {
+    label: "Zona"
     type: string
     sql: ${TABLE}.ZPLANT_ZSD_CH019 ;;
   }
@@ -154,14 +157,14 @@ view: tbl_m0004 {
     type: number
     sql: ${TABLE}.ZSD_CH011_1 ;;
   }
-  dimension_group: zsd_ch093_new {
+  dimension_group: zsd_ch093 {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
     datatype: date
     sql: ${TABLE}.ZSD_CH093_new ;;
   }
-  dimension_group: zsd_ch094_new {
+  dimension_group: zsd_ch094 {
     type: time
     timeframes: [raw, date, week, month, quarter, year]
     convert_tz: no
@@ -177,18 +180,22 @@ view: tbl_m0004 {
     sql: ${TABLE}.ZSD_CH372 ;;
   }
   dimension: zsd_ch528 {
+    label: "Año/Mes de Fecha de Entrega"
     type: number
     sql: ${TABLE}.ZSD_CH528 ;;
   }
   dimension: zsd_ch529 {
+    label: "Año de Fecha de Entrega"
     type: number
     sql: ${TABLE}.ZSD_CH529 ;;
   }
   dimension: zsd_ch530 {
+    label: "Semana de la Fecha de Entrega"
     type: number
     sql: ${TABLE}.ZSD_CH530 ;;
   }
   dimension: zsd_kf006 {
+    label: "Cajas Originales Pedidas"
     type: number
     sql: ${TABLE}.ZSD_KF006 ;;
   }
@@ -197,10 +204,12 @@ view: tbl_m0004 {
     sql: ${TABLE}.ZSD_KF006_1 ;;
   }
   dimension: zsd_kf007 {
+    label: "Cajas Unidad Pedidas"
     type: number
     sql: ${TABLE}.ZSD_KF007 ;;
   }
   dimension: zsd_kf124 {
+    label: "Cantidad Entregada Efectivamente en UMV"
     type: number
     sql: ${TABLE}.ZSD_KF124 ;;
   }
@@ -209,14 +218,17 @@ view: tbl_m0004 {
     sql: ${TABLE}.ZSD_KF124_1 ;;
   }
   dimension: zsd_kf125 {
+    #no label
     type: number
     sql: ${TABLE}.ZSD_KF125 ;;
   }
   dimension: zsd_kf126 {
+    #no label
     type: number
     sql: ${TABLE}.ZSD_KF126 ;;
   }
   dimension: zsd_kf127 {
+    label: "Cantidad de Entrega"
     type: number
     sql: ${TABLE}.ZSD_KF127 ;;
   }
