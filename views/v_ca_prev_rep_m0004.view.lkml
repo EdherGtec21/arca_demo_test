@@ -12,26 +12,38 @@ view: v_ca_prev_rep_m0004 {
     sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN  ${TABLE}.contador_pedido ELSE NULL END;;
   }
   dimension: desabasto {
+    #24.1
     type: number
-    sql: ${TABLE}.Desabasto ;;
+    #sql: ${TABLE}.Desabasto ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN  ${TABLE}.Desabasto ELSE NULL END;;
   }
   dimension: doc_type_pedido {
     type: string
     sql: ${TABLE}.DOC_TYPE_PEDIDO ;;
   }
   dimension: entregas_devueltas {
+    #18
     type: number
-    sql: ${TABLE}.Entregas_Devueltas ;;
+    #sql: ${TABLE}.Entregas_Devueltas ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN  ${TABLE}.Entregas_Devueltas ELSE NULL END;;
   }
   dimension: entregas_incompletas {
     type: number
     sql: ${TABLE}.Entregas_Incompletas ;;
   }
   dimension: entregas_modificadas {
+    #17.1
     type: number
     #sql: ${TABLE}.Entregas_Modificadas_2 ;;
     sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN  ${TABLE}.Entregas_Modificadas_2 ELSE NULL END;;
   }
+
+  dimension: pedidos_entregados_incompletos {
+    #17
+    type: number
+    sql: ${entregas_modificadas}-${entregas_devueltas} ;;
+  }
+
   dimension: ped_perf {
     type: string
     sql: ${TABLE}.PedPerf ;;
@@ -241,14 +253,18 @@ view: v_ca_prev_rep_m0004 {
     sql: ${TABLE}.ZSD_CH765 ;;
   }
   dimension: zsd_kf006 {
+    #22
+    label: "Cajas Originales Pedidas"
     type: number
-    sql: ${TABLE}.ZSD_KF006 ;;
+    #sql: ${TABLE}.ZSD_KF006 ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN  ${TABLE}.ZSD_KF006 ELSE NULL END;;
   }
   dimension: zsd_kf007 {
     type: number
     sql: ${TABLE}.ZSD_KF007 ;;
   }
   dimension: zsd_kf124 {
+    label: "Cantidad Entregada Efectivamente en UMV"
     type: number
     sql: ${TABLE}.ZSD_KF124 ;;
   }
@@ -261,8 +277,11 @@ view: v_ca_prev_rep_m0004 {
     sql: ${TABLE}.ZSD_KF126 ;;
   }
   dimension: zsd_kf127 {
+    #23
+    label: "Cantidad de Entrega"
     type: number
-    sql: ${TABLE}.ZSD_KF127 ;;
+    #sql: ${TABLE}.ZSD_KF127 ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN  ${TABLE}.ZSD_KF127 ELSE NULL END;;
   }
   dimension: zsd_kf135 {
     type: number
@@ -318,6 +337,29 @@ view: v_ca_prev_rep_m0004 {
     #13
     type: number
     sql: (${pedidos_modificados_por_APT})/(${pedidos_cargados_perfectos}-${pedidos_no_entregados_por_apt}-${pedidos_modificados_por_APT}) ;;
+  }
+  dimension: perc_pedidos_entregados_incompletos {
+    #19
+    type: number
+    sql: ${pedidos_entregados_incompletos}/${pedidos_cargados_por_APT};;
+  }
+  dimension: perc_pedidos_devueltos_por_cliente {
+    #20
+    type: number
+    sql: ${entregas_devueltas}/${pedidos_cargados_por_APT};;
+  }
+  dimension: demanda_original {
+    #22
+    type: number
+    sql: ${entregas_devueltas}/${pedidos_cargados_por_APT};;
+  }
+  dimension: cajas_entregadas {
+    type: number
+    sql:CASE
+            WHEN ${zsd_kf124} >= ${zsd_kf127}
+            THEN ${zsd_kf127}
+            ELSE ${zsd_kf124}
+          END;;
   }
   measure: count {
     type: count
