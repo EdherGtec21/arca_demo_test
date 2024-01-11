@@ -1,9 +1,11 @@
 view: tbl_m0004 {
   sql_table_name: `arca-cortex.looker_temporal.TblM0004` ;;
 
-  dimension: ___dor_ped {
+  dimension: contador_pedido {
+    label: "Contador pedido"
     type: number
-    sql: ${TABLE}.___DOR_PED ;;
+    #sql: ${TABLE}.___DOR_PED ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN  ${TABLE}.___DOR_PED ELSE NULL END;;
   }
   dimension: _zsd_kf135 {
     label: "Cantidad de Entrega Original en Cajas Unidad"
@@ -39,7 +41,7 @@ view: tbl_m0004 {
     datatype: date
     sql: ${TABLE}.dia_uno_mes_new ;;
   }
-  dimension: doc_type_ped {
+  dimension: doc_type_pedido {
     type: string
     sql: ${TABLE}.DOC_TYPE_PED ;;
   }
@@ -181,12 +183,12 @@ view: tbl_m0004 {
   }
   dimension: zsd_ch528 {
     label: "Año/Mes de Fecha de Entrega"
-    type: number
+    type: string
     sql: ${TABLE}.ZSD_CH528 ;;
   }
   dimension: zsd_ch529 {
     label: "Año de Fecha de Entrega"
-    type: number
+    type: string
     sql: ${TABLE}.ZSD_CH529 ;;
   }
   dimension: zsd_ch530 {

@@ -43,11 +43,16 @@ explore: fro_x_material {
   label: "Fill Rate Operativo por Material "
 }
 
-
+#m0004 corresponde a FRO
 explore: tbl_m0004 {
   label: "M0004"
 }
-
+#m0004 corresponde a FRO x material
 explore: tbl_m0005 {
   label: "M0005"
+}
+
+
+explore: v_ca_prev_rep_m0004 {
+  label: "BQ M0004"
 }
