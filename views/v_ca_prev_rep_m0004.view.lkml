@@ -27,9 +27,10 @@ view: v_ca_prev_rep_m0004 {
     type: number
     sql: ${TABLE}.Entregas_Incompletas ;;
   }
-  dimension: entregas_modificadas_2 {
+  dimension: entregas_modificadas {
     type: number
-    sql: ${TABLE}.Entregas_Modificadas_2 ;;
+    #sql: ${TABLE}.Entregas_Modificadas_2 ;;
+    sql: CASE WHEN ${doc_type_pedido} <> 'Y041' THEN  ${TABLE}.Entregas_Modificadas_2 ELSE NULL END;;
   }
   dimension: ped_perf {
     type: string
@@ -306,6 +307,17 @@ view: v_ca_prev_rep_m0004 {
     #7
     type: number
     sql: ${contador_pedido}-${pedidos_modificados_por_APT}-${pedidos_no_entregados_por_apt}-${pedidos_sin_entrega} ;;
+  }
+  dimension: perc_pedidos_cargados_perfectos {
+    #12
+    type: number
+    sql: (${pedidos_cargados_perfectos})/(${pedidos_cargados_perfectos}+${pedidos_no_entregados_por_apt}+${pedidos_modificados_por_APT}) ;;
+  }
+
+  dimension: perc_pedidos_modificados_por_APT {
+    #13
+    type: number
+    sql: (${pedidos_modificados_por_APT})/(${pedidos_cargados_perfectos}-${pedidos_no_entregados_por_apt}-${pedidos_modificados_por_APT}) ;;
   }
   measure: count {
     type: count
