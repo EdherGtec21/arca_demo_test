@@ -354,12 +354,19 @@ view: v_ca_prev_rep_m0004 {
     sql: ${entregas_devueltas}/${pedidos_cargados_por_APT};;
   }
   dimension: cajas_entregadas {
+    #25
     type: number
     sql:CASE
             WHEN ${zsd_kf124} >= ${zsd_kf127}
             THEN ${zsd_kf127}
             ELSE ${zsd_kf124}
           END;;
+  }
+  dimension: perc_fill_rate_operativo {
+    #22
+    type: number
+    #sql: ${cajas_entregadas}/${demanda_original};;
+    sql: CASE WHEN ${demanda_original} <> 0 THEN ${cajas_entregadas}/${demanda_original} ELSE 0 END ;;
   }
   measure: count {
     type: count
